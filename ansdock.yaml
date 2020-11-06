@@ -19,4 +19,4 @@
     shell: "docker build -t myimage ."
 
   - name: creating container
-    shell: "docker run -d --name mycont -p 3000:3000 myimage"
+    shell: "docker run -d --name mycont -p 80:80 myimage"
