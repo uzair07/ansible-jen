@@ -1,0 +1,22 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+  - name: stopping docker container
+    shell: "docker stop $(docker ps -aq)"
+    ignore_errors: yes
+
+  - name: removing docker container
+    shell: "docker rm $(docker ps -aq)"
+    ignore_errors: yes
+
+  - name: removing docker images
+    shell: "docker rmi $(docker images -q)"
+    ignore_errors: yes
+
+  - name: building image
+    shell: "docker build -t myimage ."
+
+  - name: creating container
+    shell: "docker run -d --name mycont -p 3000:3000 myimage"

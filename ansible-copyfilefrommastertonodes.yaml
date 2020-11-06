@@ -1,0 +1,12 @@
+---
+- name: Sync Push task - Executed on source host
+  hosts: server1
+  tasks:
+    - name: Copy the file from source to remote using Method Push
+      tags: sync-push
+      synchronize:
+        src: ~/
+        dest: ~/
+        mode: push
+      delegate_to: localhost
+
